@@ -16,6 +16,8 @@ while True:
             temp_c = int(temp_raw)
             temp_f = temp_c*(5/9) + 32
             print('\nThe temperature in Farenheit is: {:0.0f}'.format(temp_f))
+            # now I know I could have used round()
+            #I'm just going to leave it as it is
         except:
             print('\nInvalid input, please try again.')
             continue
