@@ -1,0 +1,48 @@
+/*
+I made two typos in part a at line a and line b but I think they are fine
+
+yep there's a high chance it's fine
+
+I think my part b is right but could you double check?
+*/
+
+public static int[] getColumn(int[][] arr2D, int c)
+{
+	int[] col = new int[arr.2D.length]; //a
+	
+	for(int r = 0; r < arr2D.length; r++)
+	{
+		col[r] = arr2D[r][c];
+	}
+	
+	retutn col; //b
+}
+
+//first row no duplicate values
+
+public static boolean isLatin(int[][] square)
+{
+	int[] row1 = square[0];
+	
+	//needs to be !hasDup
+	boolean hasDup = containsDuplicates(row1);
+	
+	boolean yesRow = true;
+	for(int r = 0; r < square.length; r++)
+	{
+		if(!hasAllValues(row1, square[r]))
+		{
+			yesRow = false;
+		}
+	}
+	
+	boolean yesCol = true;
+	for(int c = 0; c < square[0].length; c++)
+	{
+		int[] curr = getColumn(square, c);
+		if(!hasAllValues(row1, curr))
+			yesCol = false;
+	}
+	
+	return !hasDup && yesRow && yesCol;
+}

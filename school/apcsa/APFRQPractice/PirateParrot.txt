@@ -1,0 +1,21 @@
+public class
+
+private int stolenSouls;
+
+//see https://docs.google.com/document/d/1txDyDjOD2Dtuj5htvVriYiAjkyZI04e7BC93-op4ShE/edit for answer key
+
+public PirateParrot(String n)
+{
+	super(n);
+	
+	//I don't see where it asked us to keep track of the # of souls stoled?
+	stolenSouls = 0; //if you forget it its fine for this question.
+	//because 0 will be default
+	
+	train("Polly want a cracker");
+}
+
+public void stealSouls(int a)
+{
+	this.age += a;
+}

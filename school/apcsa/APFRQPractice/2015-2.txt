@@ -1,0 +1,45 @@
+pubic class HiddenWord
+{
+	private String word;
+	
+	public HiddenWord(String w)
+	{
+		word = w;
+	}
+	
+	//charAt() instead of substring()
+	//>= 0 instead of != -1
+	public String getHint(String guess)
+	{
+		String output = "";
+		for(int i = 0; i < word.length(); i++)
+		{
+			//why not name they currW and currG
+			char c = word.charAt(i);
+			char g = guess.charAt(i);
+			if(c == g)
+				output += c;
+			//CAREFUL!
+			//check whether g is in word!
+			//testing whether currG is in word
+			//word.indexOf(g) != -1 
+			else if(guess.indexOf(c) >= 0) //WRONG
+				output += "+";
+			else
+				output += "*";
+		}
+		return output;
+	}
+	
+	//the "no penalty" section is the same for every year right?
+	//roughly the same
+	//we can write comments without deleting them bc they are
+	//"extraneous code with no side effect"
+	//yep comments are good
+	
+	//Is there a preference over >= 0 or != -1 when checking if a character exists in the string? And substring() over charAt()?
+	//nope
+	//they are the same thing
+	//your call
+	//!= -1 is the same as >= 0 or > -1
+}

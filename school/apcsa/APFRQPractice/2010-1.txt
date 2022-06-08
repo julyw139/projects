@@ -1,0 +1,34 @@
+public int getTotalBoxes()
+{
+	int sum = 0;
+	for(CookieOrder c : orders)
+	{
+		sum += c.getNumBoxes();
+	}
+	return sum;
+}
+
+public int removeVariety(String cookieVar)
+{
+	//TODO:
+	//remove
+	//return total number
+	
+	int count = 0;
+	//yikes I forgot to do - 1
+	for(int i = orders.size(); i >= 0; i--)
+	{
+		CookieOrder curr = orders.get(i);
+		if(curr.getVariety().equals(cookieVar))
+		{
+			//oof wrong param
+			//E remove (int index)
+			//I should use the ref sheet to check next time
+			orders.remove(curr);
+			//should be orders.remove(i);
+			count += curr.getNumBoxes();
+			//orders.remove(i).getNumBoxes() also works
+		}
+	}
+	return count;
+}

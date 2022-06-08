@@ -1,0 +1,47 @@
+//part a
+public int getValueAt(int row, int col)
+{
+	for(SparseArrayEntry entry : entries)
+	{
+		if(entry.getRow() == row && entry.getCol() == col)
+		{
+			return entry.getValue();
+		}
+		return 0;
+	}
+}
+
+//part b
+//lol I forgot the existence of set()
+//might lose 1 point?
+//but they said order doesn't matter
+//remember the existence of set()!
+//ooo could ask Mr. Suriel on Sat tutoring if there is one!
+//yes but there's no point in doing that
+//just remember the existence of set()
+//also go over counting selection sort and insertion sert
+//review it on your own
+//you will never get the gist of it unless you do it yourself
+//...I deleted an extra line when cleaning up the comments
+//should've did numCols-- at the end
+//ask Mr. Suriel if we can leave comments as they are
+//yep comments are fine
+public void removeColumn(int col)
+{
+	numCols--;
+	for(int i = 0; i < entries.size(); i++)
+	{
+		//looping through entries
+		SparseArrayEntry currEntry = entries.get(i);
+		if(currEntry.getCol() == col)
+		{
+			entries.remove(currEntry);
+			i--;
+		}
+		else if(currEntry.getCol() > col)
+		{
+			entries.remove(currEntry);
+			entries.add(new SparseArrayEntry(currEntry.getRow(), currEntry.getCol() - 1, currEntry.getValue()));
+		}
+	}
+}

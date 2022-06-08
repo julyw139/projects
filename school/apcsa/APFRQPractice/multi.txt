@@ -1,0 +1,237 @@
+/**
+* 05/15/21 AP tutoring
+*/
+
+//2019-1
+public static int numberOfLeapYears(int year1, int year2)
+{
+	int count = 0;
+	for(int i = year1; i <= year2; i++)
+	{
+		if(isLeapYear(i))
+			count++;
+	}
+	return count;
+}
+
+public static int dayOfWeek(int month, int day, int year)
+{
+	int firstDay = firstDayOfYear(year);
+	
+	int numDay = dayOfYear(month, day, year);
+	
+	//fine because this is doing nothing
+	//since numDay is <= 6
+	//and mod would be <= 5
+	//and anything less than 7 % 7 is just itself
+	//wait numDay is not <= 6?
+	int mod = (numDay - 1) % 7;
+	
+	int result = firstDay + mod;
+	
+	if(result >= 7)
+		return result % 7;
+	else
+		return result;
+}
+
+public static int dayOWOfficial(int month, int day, int year)
+{
+	int firstDay = firstDayOfYear(year);
+	
+	int dayNum = dayOfYear(month, day, year);
+	
+	int total = firstDay + dayNum - 1;
+	
+	return total % 7;
+}
+
+//2016-1
+public class RandomStringChooser
+{
+	private String[] strs;
+	
+	public RandomStringChooser(String[] s)
+	{
+		strs = s;
+	}
+	
+	public String getNext()
+	{
+		int len = strs.length;
+		if(len == 0)
+			return "NONE";
+		else
+		{
+			int randI = Math.random() * len;
+			int str = strs[randI];
+			
+			String[] newStrs = new String[len - 1];
+			for(int i = 0; i < len; i++)
+			{
+				if(i < randI)
+					newStrs[i] = strs[i];
+				else if(i > randI)
+					newStrs[i - 1] = strs[i];
+			}
+			strs = newStrs;
+			return str;
+		}
+	}
+}
+
+public class RSCOfficial
+{
+	//ohhh you can just copy the elements in
+	//the param needs to be a array but the attribute doesn't have to be!
+	
+	private String[] words;
+	
+	public RandomStringChooser(String[] w)
+	{
+		words = w; //this is ok for the AP exam.
+		
+		//or
+		/*
+		words = new Sting[w.length];
+		for(int i = 0; i < w.length; i++)
+			words[i] = w[i];
+		*/
+	}
+	
+	public String getNext()
+	{
+		if(words.length == 0)
+			return "NONE";
+		else
+		{
+			int rand = (int)(Math.random()*words.length);
+			String[] temp = new String[words.length - 1];
+			
+			int tempIndex = 0;
+			for(int i = 0; i < words.length; i++)
+			{
+				if(rand != i)
+				{
+					temp[tempIndex] = words[i];
+					tempIndex++;
+				}
+			}
+			String output = words[rand];
+			words = temp;
+		}
+	}
+}
+
+public class RSCOfficial2
+{
+	private ArrayList<String> words;
+	
+	public RSCOfficial2(String[] w)
+	{
+		words = new ArrayList<String>();
+		for(int i = 0; i < w.length; i++)
+			words.add(w[i]);
+	}
+	
+	public String getNext()
+	{
+		if(words.size() == 0)
+			return "NONE";
+		else
+		{
+			int rand = (int)(Math.random()*words.size());
+			return words.remove(rand);
+		}
+	}
+}
+
+//part b
+
+public RandomLetterChooser(String str)
+{
+	super(getSingleLetters(str));
+	//in here must go ARRAY OF STRINGS
+}
+
+//2018-2
+
+//2019-4
+public LightBoard(int numRows, int numcols)
+{
+	lights = new boolean[numRows][numCols];
+	
+	for(int r = 0; r < numRows; r++)
+	{
+		for(int c = 0; c < numCols; c++)
+		{
+			double rand = Math.random();
+			if(rand < 0.4)
+				lights[r][c] = true;
+		}
+	}
+}
+
+public boolean evaluateLight(int row, int col)
+{
+	boolean stat = lights[row][col];
+	
+	int count = 0;
+	
+	for(int r = 0; r < lights.length; r++)
+	{
+		for(int c = 0; c < lights[0].length; c++)
+		{
+			if(c == col)
+			{
+				if(lights[r][c])
+					count++;
+			}
+		}
+	}
+	
+	if(stat && count%2 == 0)
+		return false;
+	else if(!stat && count%3 == 0)
+		return true;
+	else
+		return stat;
+}
+//^correct
+
+public LBOfficial(int numRows, int numcols)
+{
+	lights = new boolean[numRows][numCols];
+	
+	for(int r = 0; r < lights.length; r++)
+	{
+		for(int c = 0; c < lights[0].length; c++)
+		{
+			int rand = (int)Math.random() * 100 + 1;
+			if(rand <= 40)
+				lights[r][c] = true;
+			else
+				lights[r][c] = false;
+		}
+	}
+}
+
+public boolean evaluateLight(int row, int col)
+{
+	boolean stateOfCur = lights[row][col];
+	
+	int countOn = 0;
+	
+	for(int r = 0; r < lights.length; r++)
+	{
+		if(lights[r][col])
+			countOn++;
+	}
+	
+	if(stateOfCur && countOn % 2 == 0)
+		return false;
+	else if(!stateOfCur && countOn % 3 == 0)
+		return true;
+	else
+		return stateOfCur;
+}
